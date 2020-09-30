@@ -29,13 +29,23 @@ def eval_(node):
 
 
 def button_click(number):
+    if number=='.' and  entry.get().count('.') != 0:
+        return
     entry.insert('end', number)
 
 
-def clear():
+def clear_all():
     global expression
     entry.delete(0, 'end')
     expression = ''
+
+
+def clear():
+    entry.delete(0, 'end')
+
+
+def delete():
+    entry.delete(len(entry.get())-1)
 
 
 def add():
@@ -113,36 +123,47 @@ button_7 = tk.Button(root, text="7", padx=40, pady=20, command=lambda: button_cl
 button_8 = tk.Button(root, text="8", padx=40, pady=20, command=lambda: button_click(8))
 button_9 = tk.Button(root, text="9", padx=40, pady=20, command=lambda: button_click(9))
 
-button_0 = tk.Button(root, text="0", padx=40, pady=20, command=lambda: button_click(0))
+button_0 = tk.Button(root, text="0", padx=88, pady=20, command=lambda: button_click(0))
 button_add = tk.Button(root, text="+", padx=39, pady=20, command=add)
 button_equal = tk.Button(root, text="=", padx=90, pady=20, command=result)
-button_clear = tk.Button(root, text="Clear", padx=79, pady=20, command=clear)
 
 button_subtract = tk.Button(root, text="-", padx=41, pady=20, command=subtract)
 button_multiply = tk.Button(root, text="*", padx=40, pady=20, command=multiply)
 button_divide = tk.Button(root, text="/", padx=41, pady=20, command=divide)
 
+button_delete = tk.Button(root, text='Del', padx=34, pady=20, command=delete)
+button_clear = tk.Button(root, text='C', padx=39, pady=20, command=clear)
+button_clearAll = tk.Button(root, text="CE", padx=36, pady=20, command=clear_all)
+
+button_comma = tk.Button(root, text='.', padx=42, pady=20, command=lambda: button_click('.'))
+
 # Show button on screen
 
-button_1.grid(row=3, column=0)
-button_2.grid(row=3, column=1)
-button_3.grid(row=3, column=2)
+button_1.grid(row=4, column=0)
+button_2.grid(row=4, column=1)
+button_3.grid(row=4, column=2)
 
-button_4.grid(row=2, column=0)
-button_5.grid(row=2, column=1)
-button_6.grid(row=2, column=2)
+button_4.grid(row=3, column=0)
+button_5.grid(row=3, column=1)
+button_6.grid(row=3, column=2)
 
-button_7.grid(row=1, column=0)
-button_8.grid(row=1, column=1)
-button_9.grid(row=1, column=2)
+button_7.grid(row=2, column=0)
+button_8.grid(row=2, column=1)
+button_9.grid(row=2, column=2)
 
-button_0.grid(row=4, column=0)
-button_add.grid(row=5, column=0)
-button_equal.grid(row=5, column=1, columnspan=2)
-button_clear.grid(row=4, column=1, columnspan=2)
+button_0.grid(row=5, column=0, columnspan=2)
+button_clear.grid(row=5, column=2)
+button_add.grid(row=6, column=0)
+button_equal.grid(row=6, column=1, columnspan=2)
 
-button_subtract.grid(row=6, column=0)
-button_multiply.grid(row=6, column=1)
-button_divide.grid(row=6, column=2)
+button_subtract.grid(row=7, column=0)
+button_multiply.grid(row=7, column=1)
+button_divide.grid(row=7, column=2)
+
+button_delete.grid(row=1, column=0)
+button_clearAll.grid(row=1, column=1)
+button_clear.grid(row=1, column=2)
+
+button_comma.grid(row=5, column=2)
 
 root.mainloop()
